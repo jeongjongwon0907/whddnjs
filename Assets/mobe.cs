@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,13 +18,11 @@ public class mobe : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        movement.x = Input.GetAxis("Horizontal");
-        movement.z = Input.GetAxis("Vertical");
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
-        movement.Normalize();
-
-        rigid.velocity = movement * speed;
-
+        movement = transform.forward * v + transform.right * h;
+        transform.position += movement * speed * Time.deltaTime;
     }
     private void Update()
     {
